@@ -1,0 +1,84 @@
+{
+	"_version": "'1.1 .0",
+
+	"sap.app": {
+
+		"_version": "1.2 .0",
+
+		"id": "my.sapui5_components",
+
+		"type": "library",
+
+		"embeds": [],
+
+		"i18n": "messagebundle.properties",
+
+		"applicationVersion": {
+
+			"version": "1.1 .0"
+
+		},
+
+		"title": "title",
+
+		"description": "description",
+
+		"ach": "CA-HOME",
+
+		"resources": "resources.json",
+
+		"offline": false
+
+	},
+
+	"sap.ui": {
+
+		"_version": "1.1 .0",
+
+		"technology": "UI5",
+
+		"deviceTypes": {
+
+			"desktop": true,
+
+			"tablet": true,
+
+			"phone": false
+
+		},
+
+		"supportedThemes": []
+
+	},
+
+	"sap.ui5": {
+
+		"_version": "1.1 .0",
+
+		"dependencies": {
+
+			"minUI5Version": "1.42.0",
+
+			"libs": {
+
+				"sap.ui.core": {
+
+					"minVersion": "1.42.0"
+
+				}
+
+			}
+
+		},
+
+		"contentDensities": {
+
+			"cozy": false,
+
+			"compact": false
+
+		}
+
+	}
+
+}
