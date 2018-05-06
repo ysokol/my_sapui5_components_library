@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/base/Object"
 ], function(Object) {
 	"use strict";
-	var MyException = Object.extend("my.price_list_approval_wf_starter.utils.MyException", {
+	var MyException = Object.extend("my_sapui5_components_library.MyException", {
 		constructor: function(sName, sMessage, oCausedBy) {
 			Object.apply(this);
 			if (arguments.length === 3) {
@@ -33,4 +33,4 @@ sap.ui.define([
 	};
 	
 	return MyException;
-}, /* bExport= */ true);
+}, /* bExport= */ false);
