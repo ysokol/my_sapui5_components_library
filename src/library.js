@@ -13,8 +13,10 @@ sap.ui.define([
 		types: [],
 		interfaces: [],
 		controls: [],
-		elements: [],
-		version: "1.0.0"
+		elements: [
+			"my_sapui5_components_library.MyException"
+		],
+		version: "0.1.0"
 	});
 
 	return my_sapui5_components_library;
