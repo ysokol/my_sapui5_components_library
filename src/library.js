@@ -14,7 +14,9 @@ sap.ui.define([
 		interfaces: [],
 		controls: [],
 		elements: [
-			"my.sapui5_components_library.exception.MyException"
+			"my.sapui5_components_library.exception.MyException",
+			"my.sapui5_components_library.utils.ResourceLoader",
+			"my.sapui5_components_library.microsoft.MicrosoftGraphApi"
 		],
 		version: "0.1.0"
 	});
