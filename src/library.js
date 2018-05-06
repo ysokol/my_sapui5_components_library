@@ -5,7 +5,7 @@ sap.ui.define([
 	"use strict";
 
 	sap.ui.getCore().initLibrary({
-		name : "my_sapui5_components_library",
+		name : "my.sapui5_components_library",
 		noLibraryCSS: true,
 		dependencies : [
 			"sap.ui.core"
@@ -14,11 +14,11 @@ sap.ui.define([
 		interfaces: [],
 		controls: [],
 		elements: [
-			"my_sapui5_components_library.MyException"
+			"my.sapui5_components_library.exception.MyException"
 		],
 		version: "0.1.0"
 	});
 
-	return my_sapui5_components_library;
+	return my.sapui5_components_library;
 
 }, /* bExport= */ false);
