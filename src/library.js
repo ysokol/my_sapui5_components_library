@@ -16,7 +16,8 @@ sap.ui.define([
 		elements: [
 			"my.sapui5_components_library.exception.MyException",
 			"my.sapui5_components_library.utils.ResourceLoader",
-			"my.sapui5_components_library.microsoft.MicrosoftGraphApi"
+			"my.sapui5_components_library.microsoft.MicrosoftGraphApi",
+			"my.sapui5_components_library.sap.workflow.WorkflowService"
 		],
 		version: "0.1.0"
 	});
