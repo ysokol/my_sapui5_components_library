@@ -201,10 +201,10 @@ sap.ui.define([
 					action: "query",
 					multiSelect: false,
 					advanced: {
-						//loginHint: "yuriy.sokolovskiy@pepsico.com",
+						loginHint: "yuriy.sokolovskiy@pepsico.com",
 						//isConsumerAccount: false,
 						//endpointHint: "https://pepsico-my.sharepoint.com",
-						endpointHint: "api.onedrive.com",
+						//endpointHint: "api.onedrive.com",
 						//endpointHint: "https://pepsico-my.sharepoint.com",
 						accessToken: that._sAccessTocken,
 						redirectUri: "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html",
@@ -224,7 +224,7 @@ sap.ui.define([
 			});
 
 		},
-
+		
 		readWorksheetList: function(sFileId) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
