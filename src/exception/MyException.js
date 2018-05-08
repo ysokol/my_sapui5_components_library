@@ -22,7 +22,7 @@ sap.ui.define([
 		} else if (typeof this._oCausedBy === 'string') {
 			sCausedBy = this._oCausedBy;
 		} else {
-			sCausedBy = JSON.stringify(this._oCausedBy);
+			sCausedBy = JSON.stringify(this._oCausedBy, null, 4);
 		}
 		
 		return this._sName + "\r\n" + this._sMessage + "\r\n" + "Caused by:\r\n" + sCausedBy;
