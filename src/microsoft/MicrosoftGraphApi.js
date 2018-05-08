@@ -210,8 +210,8 @@ sap.ui.define([
 						//queryParameters: "select=id,name,size,file,folder,photo,@microsoft.graph.downloadUrl",
 						filter: "folder,.xlsx"
 					},
-					success: function(aFiles) {
-						resolve(aFiles);
+					success: function(oResult) {
+						resolve(oResult.value);
 					},
 					cancel: function() {
 						reject();
