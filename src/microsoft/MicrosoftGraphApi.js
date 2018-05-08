@@ -201,7 +201,7 @@ sap.ui.define([
 					action: "query",
 					multiSelect: false,
 					advanced: {
-						loginHint: "yuriy.sokolovskiy@pepsico.com",
+						//loginHint: "yuriy.sokolovskiy@pepsico.com",
 						//isConsumerAccount: false,
 						//endpointHint: "api.onedrive.com",
 						endpointHint: "https://pepsico-my.sharepoint.com",
