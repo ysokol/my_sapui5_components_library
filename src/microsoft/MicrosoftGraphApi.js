@@ -182,6 +182,21 @@ sap.ui.define([
 			});*/
 
 		},
+		
+		listVersions: function(sFileId) {
+			var that = this;
+			return new Promise(function(resolve, reject) {
+				that._oClient
+					.api("me/drive/items('" + sFileId + "')/versions")
+					.get((oError, oResult) => {
+						if (oResult) {
+							resolve(oResult.value);
+						} else {
+							reject(new MyException("MicrosoftGraphApi", "Failed listVersions()", oError));
+						}
+					});
+			});
+		},
 
 		getMyRecentFiles: function() {
 			var that = this;
