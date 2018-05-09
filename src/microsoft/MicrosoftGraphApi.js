@@ -197,6 +197,28 @@ sap.ui.define([
 					});
 			});
 		},
+		
+		shareFile: function(sFileId, aUserMails) {
+			var that = this;
+
+			return new Promise(function(resolve, reject) {
+				that._oClient
+					.api("me/drive/items('" + sFileId + "')/invite/")
+					.post({
+						"recipients": aUserMails,
+						"message": "Here's the file that we're collaborating on.",
+						"requireSignIn": true,
+						"sendInvitation": false,
+						"roles": ["read"]
+					}, (oError, oResult) => {
+						if (oResult) {
+							resolve(oResult.value);
+						} else {
+							reject(new MyException("MicrosoftGraphApi", "Failed shareFile()", oError));
+						}
+					});
+			});
+		},
 
 		getMyRecentFiles: function() {
 			var that = this;
