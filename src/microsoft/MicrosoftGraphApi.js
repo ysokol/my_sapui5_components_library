@@ -23,7 +23,8 @@ sap.ui.define([
 					that._userAgentApplication = new Msal.UserAgentApplication(that._sClientID, null, that._authCallback, {
 						logger: that._oLogger,
 						cacheLocation: 'localStorage',
-						redirectUri: "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html"
+						//redirectUri: "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html"
+						redirectUri: https://flpportal-s0004431717trial.dispatcher.hanatrial.ondemand.com/sap/fiori/pricelistapprovalwfstarter/index.html"
 					});
 					//that._userAgentApplication._redirectUri = "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html";
 					that.init();
