@@ -200,7 +200,6 @@ sap.ui.define([
 		
 		shareFile: function(sFileId, aUserMails) {
 			var that = this;
-
 			return new Promise(function(resolve, reject) {
 				that._oClient
 					.api("me/drive/items('" + sFileId + "')/invite/")
