@@ -12,11 +12,11 @@ sap.ui.define([
 			that._aGraphScopes = ["user.read", "files.read.all", "files.read"];
 
 			var oResourceLoader = new ResourceLoader();
-			var sHttpPath = jQuery.sap.getModulePath("my.price_list_approval_wf_starter");
+			var sHttpPath = jQuery.sap.getModulePath("my.sapui5_components_library.microsoft");
 
 			Promise.all([
-					oResourceLoader.getScript(sHttpPath + "/utils/msgraph-sdk/graph-js-sdk-web.js"),
-					oResourceLoader.getScript(sHttpPath + "/utils/msal/msal.min.js"),
+					oResourceLoader.getScript(sHttpPath + "/msgraph-sdk/graph-js-sdk-web.js"),
+					oResourceLoader.getScript(sHttpPath + "/msal/msal.min.js"),
 					oResourceLoader.getScript("https://js.live.net/v7.2/OneDrive.js")
 				])
 				.then(function(aResults) {
