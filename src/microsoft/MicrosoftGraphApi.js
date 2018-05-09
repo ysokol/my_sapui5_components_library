@@ -243,7 +243,8 @@ sap.ui.define([
 						//endpointHint: "api.onedrive.com",
 						//endpointHint: "https://pepsico-my.sharepoint.com",
 						accessToken: that._sAccessTocken,
-						redirectUri: "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html",
+						//redirectUri: "https://webidetesting9587697-s0004431717trial.dispatcher.hanatrial.ondemand.com/webapp/index.html",
+						redirectUri: "https://flpportal-s0004431717trial.dispatcher.hanatrial.ondemand.com/sap/fiori/pricelistapprovalwfstarter/index.html",
 						//queryParameters: "select=id,name,size,file,folder,photo,@microsoft.graph.downloadUrl",
 						filter: "folder,.xlsx"
 					},
