@@ -142,46 +142,6 @@ sap.ui.define([
 							});
 					});
 			}
-
-			/*that._userAgentApplication.loginPopup(that._aGraphScopes).then(function(idToken) {
-				//alert(idToken);
-				//Login Success
-				that._userAgentApplication.acquireTokenSilent(that._aGraphScopes).then(function(accessToken) {
-					alert("Access Tocke Aquired!");
-					that._sAccessTocken = accessToken;
-					that._oClient = MicrosoftGraph.Client.init({
-						authProvider: (done) => {
-							done(null, that._sAccessTocken); //first parameter takes an error if you can't get an access token
-						}
-					});
-					that._setCookie('msgraph-access-tocken', that._sAccessTocken, 7);
-				}, function(error) {
-					//AcquireToken Failure, send an interactive request.
-					that._userAgentApplication.acquireTokenPopup(that._aGraphScopes).then(function(accessToken) {
-						alert("Access Tocke Aquired!");
-						that._sAccessTocken = accessToken;
-						that._oClient = MicrosoftGraph.Client.init({
-							authProvider: (done) => {
-								done(null, that._sAccessTocken); //first parameter takes an error if you can't get an access token
-							}
-						});
-						that._setCookie('msgraph-access-tocken', that._sAccessTocken, 7);
-					}, function(error) {
-						alert(error);
-					});
-				})
-			}, function(error) {
-				alert(error);
-			});*/
-
-			/*this._eraseCookie('msgraph-access-tocken');
-			alert("2");
-			
-						this._oLogger = new Msal.Logger(that._loggerCallback, {
-				level: Msal.LogLevel.Verbose,
-				correlationId: '12345'
-			});*/
-
 		},
 		
 		openFileOpenDialog: function() {
@@ -219,7 +179,7 @@ sap.ui.define([
 		
 		_getDriveItemPath: function(oDriveItem) {
 			if (oDriveItem.id && oDriveItem.parentReference && oDriveItem.parentReference.driveId) {
-				return "drives('" + oDriveItem.parentReference.driveId + "')/items('" + oDriveItem.parentReference.driveId + "')";
+				return "drives('" + oDriveItem.parentReference.driveId + "')/items('" + oDriveItem.id + "')";
 			} else {
 				throw new MyException("MicrosoftGraphApi", "Failed _getDriveItemPath()", oDriveItem);
 			}
