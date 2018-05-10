@@ -244,7 +244,7 @@ sap.ui.define([
 			var that = this;
 			return new Promise(function(resolve, reject) {
 				that._oClient
-					.api(that._getDriveItemPath(oDriveItem) + /invite")
+					.api(that._getDriveItemPath(oDriveItem) + "/invite")
 					.post({
 						"recipients": aUserMails,
 						"message": "Here's the file that we're collaborating on.",
