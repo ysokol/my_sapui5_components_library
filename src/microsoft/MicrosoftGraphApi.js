@@ -184,51 +184,6 @@ sap.ui.define([
 
 		},
 		
-		listVersions: function(sFileId) {
-			var that = this;
-			return new Promise(function(resolve, reject) {
-				that._oClient
-					.api("me/drive/items('" + sFileId + "')/versions")
-					.get((oError, oResult) => {
-						if (oResult) {
-							resolve(oResult.value);
-						} else {
-							reject(new MyException("MicrosoftGraphApi", "Failed listVersions()", oError));
-						}
-					});
-			});
-		},
-		
-		shareFile: function(sFileId, aUserMails) {
-			var that = this;
-			return new Promise(function(resolve, reject) {
-				that._oClient
-					.api("me/drive/items('" + sFileId + "')/invite/")
-					.post({
-						"recipients": aUserMails,
-						"message": "Here's the file that we're collaborating on.",
-						"requireSignIn": true,
-						"sendInvitation": false,
-						"roles": ["read"]
-					}, (oError, oResult) => {
-						if (oResult) {
-							resolve(oResult.value);
-						} else {
-							reject(new MyException("MicrosoftGraphApi", "Failed shareFile()", oError));
-						}
-					});
-			});
-		},
-
-		getMyRecentFiles: function() {
-			var that = this;
-			that._oClient
-				.api('/me/drive/recent')
-				.get((err, res) => {
-					alert(JSON.stringify(res)); // prints info about authenticated user
-				});
-		},
-
 		openFileOpenDialog: function() {
 			// https://docs.microsoft.com/en-us/onedrive/developer/controls/file-pickers/js-v72/open-file
 			var that = this;
@@ -262,11 +217,55 @@ sap.ui.define([
 
 		},
 		
-		readWorksheetList: function(sFileId) {
+		_getDriveItemPath: function(oDriveItem) {
+			if (oDriveItem.id && oDriveItem.parentReference && oDriveItem.parentReference.driveId) {
+				return "drives('" + oDriveItem.parentReference.driveId + "')/items('" + oDriveItem.parentReference.driveId + "')";
+			} else {
+				throw new MyException("MicrosoftGraphApi", "Failed _getDriveItemPath()", oDriveItem);
+			}
+		},
+		
+		listVersions: function(oDriveItem) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
 				that._oClient
-					.api("me/drive/items('" + sFileId + "')/workbook/worksheets/")
+					.api(that._getDriveItemPath(oDriveItem) + "/versions")
+					.get((oError, oResult) => {
+						if (oResult) {
+							resolve(oResult.value);
+						} else {
+							reject(new MyException("MicrosoftGraphApi", "Failed listVersions()", oError));
+						}
+					});
+			});
+		},
+		
+		shareFile: function(oDriveItem, aUserMails) {
+			var that = this;
+			return new Promise(function(resolve, reject) {
+				that._oClient
+					.api(that._getDriveItemPath(oDriveItem) + /invite")
+					.post({
+						"recipients": aUserMails,
+						"message": "Here's the file that we're collaborating on.",
+						"requireSignIn": true,
+						"sendInvitation": false,
+						"roles": ["read"]
+					}, (oError, oResult) => {
+						if (oResult) {
+							resolve(oResult.value);
+						} else {
+							reject(new MyException("MicrosoftGraphApi", "Failed shareFile()", oError));
+						}
+					});
+			});
+		},
+
+		readWorksheetList: function(oDriveItem) {
+			var that = this;
+			return new Promise(function(resolve, reject) {
+				that._oClient
+					.api(that._getDriveItemPath(oDriveItem) + "/workbook/worksheets/")
 					.get((oError, oResult) => {
 						if (oResult) {
 							resolve(oResult.value);
