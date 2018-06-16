@@ -28,8 +28,8 @@ sap.ui.define([
 			var that = this;
 			return new Promise(function(resolve, reject) {
 				that.create(sPath, oData, {
-					success: function(oData) {
-						resolve(oData);
+					success: function(oDataResult) {
+						resolve(oDataResult);
 					},
 					error: function(oException) {
 						reject(new MyException("MyODataModel", "Failed createExt", oException));
