@@ -8,7 +8,21 @@ sap.ui.define([
 			ODataModel.call(this);
 			
 		},*/
-
+		callFunctionExt: function(sFuncPath, sMethod, mUrlParameters) {
+			var that = this;
+			return new Promise(function (resolve, reject) {
+				that.callFunction(sFuncPath, { 
+					method: sMethod,
+					urlParameters: mUrlParameters,
+					success: function(oData) {
+						resolve(oData);
+					},
+					error: function(oException) {
+						reject(new MyException("MyODataModel", "Failed callFunctionExt", oException));
+					}
+				});	
+			});
+		},
 		readExt: function(sPath, mUrlParameters) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
