@@ -78,7 +78,7 @@ sap.ui.define([
 		createPlacemarks: function() {
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
-				oPlacemark.createPlacemark();
+				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
 			});
 			this._oMap.geoObjects.add(this._oGeoObjectCollection);
 		},
