@@ -43,8 +43,8 @@ sap.ui.define([
 			if (this._oMultiRoute) {
 				this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
 				this._oMultiRoute = null;
-				this._sFromValue = underfined;
-				this._sToValue = underfined;
+				this._sFromValue = undefined;
+				this._sToValue = undefined;
 			}
 			if (this._oModelContext.getProperty(this._sFromProperty) && this._oModelContext.getProperty(this._sToProperty) && this._oParent._oMap) {
 				this._sFromValue = this._oModelContext.getProperty(this._sFromProperty);
