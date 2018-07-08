@@ -32,24 +32,35 @@ sap.ui.define([
 				this._oModelContext.getPath() + "/" + this._sToProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sToProperty));
 			oBindingTo.attachChange((oEvent) => this.onRefresh());
+			
+			this._sFromValue = underfined;
+			this._sToValue = underfined;
 		},
 		onRefresh: function () {
+			if (this._oModelContext.getProperty(this._sFromProperty) === this._sFromValue && this._oModelContext.getProperty(this._sToProperty) === this._sToValue ) {
+				return;
+			}
 			if (this._oMultiRoute) {
 				this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
 				this._oMultiRoute = null;
+				this._sFromValue = underfined;
+				this._sToValue = underfined;
 			}
 			if (this._oModelContext.getProperty(this._sFromProperty) && this._oModelContext.getProperty(this._sToProperty) && this._oParent._oMap) {
+				this._sFromValue = this._oModelContext.getProperty(this._sFromProperty);
+				this._sToValue = this._oModelContext.getProperty(this._sToProperty);
 				this._oMultiRoute = this._createRoute();
 				this._oParent._oMap.geoObjects.add(this._oMultiRoute);
 			}
 		},
 		_createRoute: function () {
+			
 			let that = this;
 			let multiRoute = new ymaps.multiRouter.MultiRoute({
 				// Описание опорных точек мультимаршрута.
 				referencePoints: [
-					that._oParent.convertGeoLocation(that._oModelContext.getProperty(that._sFromProperty)),
-					that._oParent.convertGeoLocation(that._oModelContext.getProperty(that._sToProperty))
+					that._oParent.convertGeoLocation(that._sFromValue),
+					that._oParent.convertGeoLocation(that._sToValue)
 				],
 				// Параметры маршрутизации.
 				params: {
