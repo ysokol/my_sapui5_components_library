@@ -23,8 +23,27 @@ sap.ui.define([
 			this._sToProperty = sToProperty;
 			this._sColor = sColor;
 			this._sActiveColor = sActiveColor;
+			this._oMultiRoute = null;
+			let oBindingFrom = new sap.ui.model.Binding(this._oModelContext.getModel(),
+				this._oModelContext.getPath() + "/" + this._sFromProperty,
+				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sFromProperty));
+			oBindingFrom.attachChange((oEvent) => this._onRefresh());
+			let oBindingTo = new sap.ui.model.Binding(this._oModelContext.getModel(),
+				this._oModelContext.getPath() + "/" + this._sToProperty,
+				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sToProperty));
+			oBindingTo.attachChange((oEvent) => this._onRefresh());
 		},
-		createRoute: function () {
+		_onRefresh: function() {
+			if (this._oModelContex.getProperty(this._sFromProperty) && this._oModelContex.getProperty(this._sToProperty)) {
+				if (this._oMultiRoute) {
+					this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
+					this._oMultiRoute = null;
+				}
+				this._oMultiRoute = this._createRoute();
+				this._oParent._oMap.geoObjects.add(this._oMultiRoute);
+			}
+		},
+		_createRoute: function () {
 			let that = this;
 			let multiRoute = new ymaps.multiRouter.MultiRoute({
 				// Описание опорных точек мультимаршрута.

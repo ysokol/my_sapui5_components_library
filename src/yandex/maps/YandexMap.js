@@ -73,25 +73,25 @@ sap.ui.define([
 		createMapObjects: function() {
 			this.createPlacemarks();
 			this.cratePlacemarkCollections();
-			this.createRoutes();
+			//this.createRoutes();
 		},
 		createPlacemarks: function() {
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
-				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
+				oPlacemark.createPlacemark();
 			});
-			this._oMap.geoObjects.add(this._oGeoObjectCollection);
+			//this._oMap.geoObjects.add(this._oGeoObjectCollection);
 		},
 		cratePlacemarkCollections: function() {
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.createPlacemarks());
 		},
-		createRoutes: function() {
+		/*createRoutes: function() {
 			this._aRoutes.forEach((oRoute) => {
 				//this._aPlacemarks.push(oPlacemark);
 				this._oGeoObjectCollectionForRoutes.add(oRoute.createRoute());
 			});
 			this._oMap.geoObjects.add(this._oGeoObjectCollectionRoutes);
-		},
+		},*/
 		createMapControl: function() {
 			let that = this;
 			return new Promise(function(resolve, reject) {
