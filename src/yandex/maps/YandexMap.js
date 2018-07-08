@@ -80,7 +80,7 @@ sap.ui.define([
 				//this._aPlacemarks.push(oPlacemark);
 				oPlacemark.createPlacemark();
 			});
-			//this._oMap.geoObjects.add(this._oGeoObjectCollection);
+			this._oMap.geoObjects.add(this._oGeoObjectCollection);
 		},
 		cratePlacemarkCollections: function() {
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.createPlacemarks());
