@@ -27,18 +27,18 @@ sap.ui.define([
 			let oBindingFrom = new sap.ui.model.Binding(this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sFromProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sFromProperty));
-			oBindingFrom.attachChange((oEvent) => this._onRefresh());
+			oBindingFrom.attachChange((oEvent) => this.onRefresh());
 			let oBindingTo = new sap.ui.model.Binding(this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sToProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sToProperty));
-			oBindingTo.attachChange((oEvent) => this._onRefresh());
+			oBindingTo.attachChange((oEvent) => this.onRefresh());
 		},
-		_onRefresh: function() {
+		onRefresh: function () {
+			if (this._oMultiRoute) {
+				this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
+				this._oMultiRoute = null;
+			}
 			if (this._oModelContext.getProperty(this._sFromProperty) && this._oModelContext.getProperty(this._sToProperty)) {
-				if (this._oMultiRoute) {
-					this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
-					this._oMultiRoute = null;
-				}
 				this._oMultiRoute = this._createRoute();
 				this._oParent._oMap.geoObjects.add(this._oMultiRoute);
 			}
@@ -60,11 +60,11 @@ sap.ui.define([
 				// Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
 				boundsAutoApply: true,
 				wayPointStartIconLayout: "default#image",
-        		wayPointStartIconImageHref: "",
-        		wayPointFinishIconLayout: "default#image",
-        		wayPointFinishIconImageHref: "",
-        		routeActiveStrokeColor: that._sActiveColor,
-        		routeStrokeColor: that._sColor
+				wayPointStartIconImageHref: "",
+				wayPointFinishIconLayout: "default#image",
+				wayPointFinishIconImageHref: "",
+				routeActiveStrokeColor: that._sActiveColor,
+				routeStrokeColor: that._sColor
 			});
 			return multiRoute;
 		}

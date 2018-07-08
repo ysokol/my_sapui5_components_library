@@ -73,7 +73,7 @@ sap.ui.define([
 		createMapObjects: function() {
 			this.createPlacemarks();
 			this.cratePlacemarkCollections();
-			//this.createRoutes();
+			this.refreshRoutes();
 		},
 		createPlacemarks: function() {
 			this._aPlacemarks.forEach((oPlacemark) => {
@@ -85,13 +85,9 @@ sap.ui.define([
 		cratePlacemarkCollections: function() {
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.createPlacemarks());
 		},
-		/*createRoutes: function() {
-			this._aRoutes.forEach((oRoute) => {
-				//this._aPlacemarks.push(oPlacemark);
-				this._oGeoObjectCollectionForRoutes.add(oRoute.createRoute());
-			});
-			this._oMap.geoObjects.add(this._oGeoObjectCollectionRoutes);
-		},*/
+		refreshRoutes: function() {
+			this._aRoutes.forEach((oRoute) => oRoute.onRefresh());
+		},
 		createMapControl: function() {
 			let that = this;
 			return new Promise(function(resolve, reject) {
