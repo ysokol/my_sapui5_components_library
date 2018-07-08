@@ -50,8 +50,8 @@ sap.ui.define([
 					iconShape: {
 						type: 'Rectangle',
 						coordinates: [
-							[0, 0],
-							[50, 50]
+							[0, -50],
+							[50, 0]
 						]
 					},
 					hintLayout: that.createHintLayout(),
