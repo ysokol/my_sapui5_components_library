@@ -34,7 +34,7 @@ sap.ui.define([
 			oBindingTo.attachChange((oEvent) => this._onRefresh());
 		},
 		_onRefresh: function() {
-			if (this._oModelContex.getProperty(this._sFromProperty) && this._oModelContex.getProperty(this._sToProperty)) {
+			if (this._oModelContext.getProperty(this._sFromProperty) && this._oModelContext.getProperty(this._sToProperty)) {
 				if (this._oMultiRoute) {
 					this._oParent._oMap.geoObjects.remove(this._oMultiRoute);
 					this._oMultiRoute = null;
@@ -48,8 +48,8 @@ sap.ui.define([
 			let multiRoute = new ymaps.multiRouter.MultiRoute({
 				// Описание опорных точек мультимаршрута.
 				referencePoints: [
-					that._oParent.convertGeoLocation(that._oModelContex.getProperty(that._sFromProperty)),
-					that._oParent.convertGeoLocation(that._oModelContex.getProperty(that._sToProperty))
+					that._oParent.convertGeoLocation(that._oModelContext.getProperty(that._sFromProperty)),
+					that._oParent.convertGeoLocation(that._oModelContext.getProperty(that._sToProperty))
 				],
 				// Параметры маршрутизации.
 				params: {
