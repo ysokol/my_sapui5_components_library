@@ -12,6 +12,7 @@ sap.ui.define([
 			oContext = null,
 			oParams: {
 				sGeoLocationProperty = undefined,
+				sGeoLocationConstant = undefined,
 				sSelectedProperty = undefined,
 				sIcon = undefined,
 				aBottomDetails = [],
@@ -28,6 +29,7 @@ sap.ui.define([
 			this._oParent = oMapControl;
 			this._oModelContext = oContext;
 			this._sGeoLocationProperty = sGeoLocationProperty;
+			this._sGeoLocationConstant = sGeoLocationConstant;
 			this._sSelectedProperty = sSelectedProperty;
 			this._sIcon = sIcon;
 			this._aBottomDetails = aBottomDetails;
@@ -44,7 +46,7 @@ sap.ui.define([
 			let that = this;
 			this._oPlacemark = new ymaps.Placemark(
 				that._oParent.convertGeoLocation(
-					that.getProperty(that._sGeoLocationProperty)
+					this._sGeoLocationConstant || that.getProperty(that._sGeoLocationProperty)
 				), {}, {
 					iconLayout: that.createIconLayout(),
 					iconShape: {
