@@ -58,7 +58,7 @@ sap.ui.define([
 				}
 			}, {
 				// Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
-				boundsAutoApply: true,
+				boundsAutoApply: false,
 				wayPointStartIconLayout: "default#image",
 				wayPointStartIconImageHref: "",
 				wayPointFinishIconLayout: "default#image",
