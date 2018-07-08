@@ -33,7 +33,8 @@ sap.ui.define([
 			oParams: {
 				sCenterProperty = undefined,
 				aPlacemarks = [],
-				aPlacemarkCollections = []
+				aPlacemarkCollections = [],
+				aRoutes = []
 			}
 		} = {}) {
 			this._oModelContext = oContext;
@@ -45,7 +46,11 @@ sap.ui.define([
 				geodesic: true
 			});
 			this._aPlacemarkCollections = aPlacemarkCollections;
-
+			this._oGeoObjectCollectionForRoutes = new ymaps.GeoObjectCollection({}, {
+				strokeWidth: 4,
+				geodesic: true
+			});
+			this._aRoutes = aRoutes;
 			this.createMap();
 		},
 		createMap: function() {
@@ -68,16 +73,24 @@ sap.ui.define([
 		createMapObjects: function() {
 			this.createPlacemarks();
 			this.cratePlacemarkCollections();
+			this.createRoutes();
 		},
 		createPlacemarks: function() {
 			this._aPlacemarks.forEach((oPlacemark) => {
-				this._aPlacemarks.push(oPlacemark);
+				//this._aPlacemarks.push(oPlacemark);
 				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
 			});
 			this._oMap.geoObjects.add(this._oGeoObjectCollection);
 		},
 		cratePlacemarkCollections: function() {
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.createPlacemarks());
+		},
+		createRoutes: function() {
+			this._aRoutes.forEach((oRoute) => {
+				//this._aPlacemarks.push(oPlacemark);
+				this._oGeoObjectCollectionForRoutes.add(oRoute.createRoute());
+			});
+			this._oMap.geoObjects.add(this._oGeoObjectCollectionRoutes);
 		},
 		createMapControl: function() {
 			let that = this;
@@ -99,7 +112,16 @@ sap.ui.define([
 				}
 			});
 		},
-		bind: function(oODataModel, sTransportationPath, sMapControlId) {
+		setCenter: function(sGeoLocation) {
+			return this._oMap.panTo(this.convertGeoLocation(sGeoLocation));
+		},
+		convertGeoLocation: function(sGeoLocation) {
+			let aGeoLocationCoordinates = [0, 0];
+			aGeoLocationCoordinates[0] = Number(sGeoLocation.split(",")[0].trim());
+			aGeoLocationCoordinates[1] = Number(sGeoLocation.split(",")[1].trim());
+			return aGeoLocationCoordinates;
+		}
+		/*bind: function(oODataModel, sTransportationPath, sMapControlId) {
 			this._oODataModel = oODataModel;
 			this._sTransportationPath = sTransportationPath;
 			this._sMapControlId = sMapControlId;
@@ -138,9 +160,7 @@ sap.ui.define([
 				}
 			});
 		},
-		setCenter: function(sGeoLocation) {
-			return this._oMap.panTo(this.convertGeoLocation(sGeoLocation));
-		},
+		
 		addLocationsToMap: function() {
 			let that = this;
 			if (that._oODataModel.getProperty(that._sTransportationPath + "/TransportationLocationAssignmentDetails")) {
@@ -190,7 +210,7 @@ sap.ui.define([
 				hideIconOnBalloonOpen: false
 			});
 			that._oMap.geoObjects.add(that._oShipFromPlaceMark);*/
-		},
+		/*},
 		addTrucksToMap: function() {
 			let that = this;
 			that._oODataModel.getProperty(that._sTransportationPath + "/TransportationAssignmentDetails")
@@ -199,12 +219,7 @@ sap.ui.define([
 					that.aPlacemarks.push(truckPlacemark);
 					that._oMap.geoObjects.add(truckPlacemark.createPlacemark());
 				});
-		},
-		convertGeoLocation: function(sGeoLocation) {
-			let aGeoLocationCoordinates = [0, 0];
-			aGeoLocationCoordinates[0] = Number(sGeoLocation.split(",")[0].trim());
-			aGeoLocationCoordinates[1] = Number(sGeoLocation.split(",")[1].trim());
-			return aGeoLocationCoordinates;
-		}
+		},*/
+		
 	});
 });
