@@ -29,6 +29,27 @@ sap.ui.define([
 				});
 			});
 		},
+		
+		getTaskContext: function(sTaskId) {
+			var that = this;
+			return new Promise(function(resolve, reject) {
+				$.ajax({
+					url: "/bpmworkflowruntime/rest/v1/task-instances/" + sTaskId + "/context",
+					method: "GET",
+					async: true,
+					success: function(oResult, sStatus, oXhr) {
+						resolve(oResult);
+					},
+					error: function(oXHR, sTextStatus, sErrorThrown) {
+						reject(new MyException("WorkflowService", "Failed getTaskDetails", {
+							sTextStatus: sTextStatus,
+							sErrorThrown: sErrorThrown
+						}));
+					}
+
+				});
+			});
+		},
 
 		completeTask: function(sTaskId) {
 			var that = this;
