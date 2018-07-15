@@ -122,7 +122,7 @@ sap.ui.define([
 		},
 		setCenter: function (sGeoLocation) {
 			if (this._sCenterValue !== sGeoLocation) {
-				this._oMap.panTo(this.convertGeoLocation(sGeoLocation));
+				//this._oMap.panTo(this.convertGeoLocation(sGeoLocation));
 				this._sCenterValue = sGeoLocation;
 			}
 		},
