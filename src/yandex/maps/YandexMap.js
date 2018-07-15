@@ -43,6 +43,7 @@ sap.ui.define([
 			});
 			this._aRoutes = aRoutes;
 			//this.createMap();
+			this.cratePlacemarkCollections();
 		},
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
@@ -53,7 +54,7 @@ sap.ui.define([
 			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);
 
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
-			this.aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
+			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.bindElement(oContext));
 
 			this.renderMap();
