@@ -116,7 +116,7 @@ sap.ui.define([
 					let oResourceLoader = new ResourceLoader();
 					oResourceLoader.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU")
 						.then(() => ymaps.ready(function () {
-							that._oMap = new ymaps.Map(that _sMapControlId, {
+							that._oMap = new ymaps.Map(that._sMapControlId, {
 								//center: that.convertGeoLocation(that._oModelContext.getProperty(that._sCenterProperty)),
 								center: [55.752515, 37.611786],
 								zoom: 9
