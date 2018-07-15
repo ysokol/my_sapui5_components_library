@@ -47,11 +47,18 @@ sap.ui.define([
 		},
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
-			this._oCenterBinding = new sap.ui.model.Binding(
+			
+			/*this._oCenterBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sCenterProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);
+			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);*/
+			
+			this._oCenterBinding = new sap.ui.model.Binding(
+				this._oModelContext.getModel(),
+				this._oModelContext.getPath() + "/" + this._sCenterProperty,
+				this._oModelContext.getModel().getContext(this._oModelContext.getPath()));
+			this._oCenterBinding.attachChange(this.renderMap, this);
 
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
 			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
@@ -99,7 +106,6 @@ sap.ui.define([
 			this.createPlacemarks();
 		},
 		createPlacemarks: function () {
-
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
 				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
