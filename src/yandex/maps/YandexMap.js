@@ -51,7 +51,7 @@ sap.ui.define([
 					this._oModelContext.getModel(),
 					this._oModelContext.getPath() + "/" + this._sCenterProperty,
 					this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-				this._oCenterBinding.attachChange((oEvent) => this.renderMap());
+				this._oCenterBinding.attachChange(this.renderMap, this);
 			} else {
 				this.renderMap();
 			}
