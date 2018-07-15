@@ -108,6 +108,7 @@ sap.ui.define([
 						.then(() => ymaps.ready(function () {
 							that._oMap = new ymaps.Map(that._sMapControlId, {
 								//center: that.convertGeoLocation(that._oModelContext.getProperty(that._sCenterProperty)),
+								center: [55.752515, 37.611786],
 								zoom: 9
 							}, {
 								searchControlProvider: 'yandex#search'
