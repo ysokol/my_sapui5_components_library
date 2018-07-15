@@ -25,11 +25,11 @@ sap.ui.define([
 				geodesic: true
 			});
 			
-			let that = this;
+			/*let that = this;
 			that._oBinding = new sap.ui.model.Binding(that._oModelContext.getModel(),
 				that._oModelContext.getPath() + "/" + that._sItemsPath,
 				that._oModelContext.getModel().getContext(that._oModelContext.getPath() + "/" + that._sItemsPath));
-			that._oBinding.attachChange((oEvent) => that.refreshPlacemarks());
+			that._oBinding.attachChange((oEvent) => that.refreshPlacemarks());*/
 
 		},
 		bindElement: function(oContext) {
