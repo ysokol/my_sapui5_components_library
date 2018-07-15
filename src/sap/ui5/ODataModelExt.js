@@ -1,3 +1,5 @@
+/*eslint-env es6*/
+
 sap.ui.define([
 	"sap/ui/model/odata/v2/ODataModel",
 	"my/sapui5_components_library/exception/MyException"
@@ -8,6 +10,10 @@ sap.ui.define([
 			ODataModel.call(this);
 			
 		},*/
+		attachChange: function(sPath, fnOnChange) {
+			let oBinding = new sap.ui.model.Binding(this, sPath, this.getContext(sPath));
+			oBinding.attachChange((oEvent) => fnOnChange(oEvent));
+		},
 		callFunctionExt: function(sFuncPath, sMethod, mUrlParameters) {
 			var that = this;
 			return new Promise(function (resolve, reject) {
@@ -37,7 +43,6 @@ sap.ui.define([
 				});
 			});
 		},
-
 		createExt: function(sPath, oData) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
@@ -51,11 +56,9 @@ sap.ui.define([
 				});
 			});
 		},
-		
 		getRelatedPath: function(sFullPath) {
 			return sFullPath.replace(this.sServiceUrl, "");
 		},
-		
 		submitChangesExt: function(sFullPath) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
@@ -69,7 +72,6 @@ sap.ui.define([
 				});
 			});
 		},
-		
 		removeExt: function(sFullPath) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
