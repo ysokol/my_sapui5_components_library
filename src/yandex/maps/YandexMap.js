@@ -10,7 +10,7 @@ sap.ui.define([
 	"use strict";
 	/*eslint-env es6*/
 	/*global ymaps*/
-
+	//
 	// https://tech.yandex.ru/maps/jsbox/2.1/object_manager_spatial
 	return Object.extend("my.sapui5_components_library.yandex.maps.YandexMap", {
 		constructor: function () {
