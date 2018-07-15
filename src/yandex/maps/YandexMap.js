@@ -54,11 +54,11 @@ sap.ui.define([
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
 			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);*/
 			
-			this._oCenterBinding = new sap.ui.model.Binding(
+			this._oMapBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
-				this._oModelContext.getPath() + "/" + this._sCenterProperty,
-				this._oModelContext.getModel().getContext(this._oModelContext.getPath()));
-			this._oCenterBinding.attachChange(this.renderMap, this);
+				this._oModelContext.getPath(),
+				this._oModelContext);
+			this._oMapBinding.attachChange(this.renderMap, this);
 
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
 			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
