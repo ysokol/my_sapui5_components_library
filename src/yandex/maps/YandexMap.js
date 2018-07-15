@@ -47,7 +47,10 @@ sap.ui.define([
 		},
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
-			
+			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
+			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
+			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.bindElement(oContext));
+
 			this._oCenterBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sCenterProperty,
@@ -60,9 +63,6 @@ sap.ui.define([
 				this._oModelContext);
 			this._oMapBinding.attachChange(this.renderMap, this);
 
-			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
-			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
-			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.bindElement(oContext));
 
 			this.renderMap();
 			// ADD placemark rendering;
@@ -73,11 +73,6 @@ sap.ui.define([
 			}
 			this.refreshPacemarks();
 			this.refreshRoutes();
-			/*if (this._oMap) {
-				this.setCenter(this._oModelContext.getProperty(this._sCenterProperty));
-			} else {
-				this.createMapControl().then(this.renderMap);
-			}*/
 		},
 		createMap: function () {
 			/*if (!this._oModelContext.getProperty(this._sCenterProperty)) {
