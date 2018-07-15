@@ -17,7 +17,6 @@ sap.ui.define([
 			this._oMap = null;
 
 		},
-
 		init: function ({
 			oContext = null,
 			sMapControlId = undefined,
@@ -122,7 +121,7 @@ sap.ui.define([
 		},
 		setCenter: function (sGeoLocation) {
 			if (this._sCenterValue !== sGeoLocation) {
-				//this._oMap.panTo(this.convertGeoLocation(sGeoLocation));
+				this._oMap.setCenter(this.convertGeoLocation(sGeoLocation), 9);
 				this._sCenterValue = sGeoLocation;
 			}
 		},
