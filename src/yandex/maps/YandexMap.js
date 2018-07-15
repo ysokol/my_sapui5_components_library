@@ -51,6 +51,9 @@ sap.ui.define([
 					this._oModelContext.getPath() + "/" + this._sCenterProperty,
 					this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
 				this._oCenterBinding.attachChange(this.renderMap, this);
+			this._aPlacemarks.forEach((oPlacemark) => {
+				oPlacemark.createPlacemark.bindElement(oContext);
+			});
 			if (this._oModelContext.getProperty(this._sCenterProperty)) {
 				this.renderMap();
 			}
