@@ -97,7 +97,7 @@ sap.ui.define([
 			this.refreshRoutes();
 		},
 		refreshPacemarks: function () {
-			this._oMap._oGeoObjectCollection.removeAll();
+			this._oGeoObjectCollection.removeAll();
 			this.createPlacemarks();
 		},
 		createPlacemarks: function () {
