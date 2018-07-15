@@ -53,7 +53,10 @@ sap.ui.define([
 						let oPlacemark = this._fnPlacemarkConstructor(that._oParent, sItemPath);
 						oPlacemark.bindElement(new sap.ui.model.Context(that._oModelContext.getModel(), "/" + sItemPath));
 						that._aPlacemarks.push(oPlacemark);
-						that._oGeoObjectCollection.add(oPlacemark.createPlacemark());
+						let oYandexPlacemark = oPlacemark.createPlacemark();
+						if (oYandexPlacemark) {
+							that._oGeoObjectCollection.add(oYandexPlacemark);
+						}
 					});
 				that._oParent._oMap.geoObjects.add(that._oGeoObjectCollection);
 			}

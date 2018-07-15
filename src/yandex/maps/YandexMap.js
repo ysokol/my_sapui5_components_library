@@ -101,7 +101,10 @@ sap.ui.define([
 		createPlacemarks: function () {
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
-				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
+				let oYandexPlacemark = oPlacemark.createPlacemark();
+				if (oYandexPlacemark) {
+					this._oGeoObjectCollection.add(oYandexPlacemark);
+				}
 			});
 			this._oMap.geoObjects.add(this._oGeoObjectCollection);
 		},

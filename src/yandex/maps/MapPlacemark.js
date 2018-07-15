@@ -62,6 +62,9 @@ sap.ui.define([
 			}
 		},
 		createPlacemark: function () {
+			if (!this._sGeoLocationConstant && !this.getProperty(this._sGeoLocationProperty)) {
+				return null;
+			}
 			let that = this;
 			this._oPlacemark = new ymaps.Placemark(
 				that._oParent.convertGeoLocation(
