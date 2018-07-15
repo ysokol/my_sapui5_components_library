@@ -45,8 +45,8 @@ sap.ui.define([
 			this._aRoutes = aRoutes;
 			this.createMap();
 		},
-		bindMap: function (sPath) {
-			this._oModelContext = new sap.ui.model.Context(this._oODataModel, this._sTransportationPath);
+		bindMap: function (oModel, sPath) {
+			this._oModelContext = new sap.ui.model.Context(oModel, sPath);
 			if (!this._oModelContext.getProperty(this._sCenterProperty)) {
 				this._oCenterBinding = new sap.ui.model.Binding(
 					this._oModelContext.getModel(),
