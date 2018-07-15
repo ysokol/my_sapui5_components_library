@@ -46,7 +46,7 @@ sap.ui.define([
 			}
 		},
 		createPlacemarks: function() {
-			if (this._aPlacemarks.length === 0 && this._oParent._oMap) {
+			if (this._aPlacemarks.length === 0 && this._oParent._oMap && this._oModelContext.getProperty(this._sItemsPath)) {
 				let that = this;
 				that._oModelContext.getProperty(that._sItemsPath)
 					.forEach((sItemPath) => {
