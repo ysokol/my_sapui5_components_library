@@ -67,7 +67,7 @@ sap.ui.define([
 			this.renderMap();
 			// ADD placemark rendering;
 		},
-		renderMap: function () {
+		renderMap: function (oEvent) {
 			if (this._oModelContext.getProperty(this._sCenterProperty)) {
 				this.setCenter(this._oModelContext.getProperty(this._sCenterProperty));
 			}
