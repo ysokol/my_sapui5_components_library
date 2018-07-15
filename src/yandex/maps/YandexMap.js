@@ -44,15 +44,14 @@ sap.ui.define([
 			this._aRoutes = aRoutes;
 			this.createMap();
 		},
-		bindMap: function (oModel, sPath) {
-			this._oModelContext = new sap.ui.model.Context(oModel, sPath);
-			if (!this._oModelContext.getProperty(this._sCenterProperty)) {
-				this._oCenterBinding = new sap.ui.model.Binding(
+		bindElement: function (oContext) {
+			this._oModelContext = oContext;
+			this._oCenterBinding = new sap.ui.model.Binding(
 					this._oModelContext.getModel(),
 					this._oModelContext.getPath() + "/" + this._sCenterProperty,
 					this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
 				this._oCenterBinding.attachChange(this.renderMap, this);
-			} else {
+			if (this._oModelContext.getProperty(this._sCenterProperty)) {
 				this.renderMap();
 			}
 		},

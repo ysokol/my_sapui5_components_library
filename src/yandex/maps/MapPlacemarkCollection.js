@@ -32,6 +32,17 @@ sap.ui.define([
 			that._oBinding.attachChange((oEvent) => that.refreshPlacemarks());
 
 		},
+		bindElement: function(oContext) {
+			this.removeAll();
+			this._oModelContext = oContext;
+			this._oBinding = new sap.ui.model.Binding(this._oModelContext.getModel(),
+				this._oModelContext.getPath() + "/" + this._sItemsPath,
+				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sItemsPath));
+			this._oBinding.attachChange(this.refreshPlacemarks, this);
+			if (this._oModelContext.getProperty(this._sItemsPath)) {
+				this.createPlacemarks();
+			}
+		},
 		createPlacemarks: function() {
 			if (this._aPlacemarks.length === 0 && this._oParent._oMap) {
 				let that = this;
