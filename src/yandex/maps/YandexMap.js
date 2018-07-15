@@ -42,7 +42,7 @@ sap.ui.define([
 				geodesic: true
 			});
 			this._aRoutes = aRoutes;
-			this.createMap();
+			//this.createMap();
 		},
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
