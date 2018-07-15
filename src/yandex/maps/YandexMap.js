@@ -48,11 +48,11 @@ sap.ui.define([
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
 			
-			/*this._oCenterBinding = new sap.ui.model.Binding(
+			this._oCenterBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sCenterProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);*/
+			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);
 			
 			this._oMapBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
