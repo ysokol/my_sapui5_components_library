@@ -15,11 +15,8 @@ sap.ui.define([
 	return Object.extend("my.sapui5_components_library.yandex.maps.YandexMap", {
 		constructor: function () {
 			this._oMap = null;
-
 		},
 		init: function ({
-			oContext = null,
-			sMapControlId = undefined,
 			oParams: {
 				sCenterProperty = undefined,
 				aPlacemarks = [],
@@ -27,8 +24,6 @@ sap.ui.define([
 				aRoutes = []
 			}
 		} = {}) {
-			this._oModelContext = oContext;
-			this._sMapControlId = sMapControlId;
 			this._sCenterProperty = sCenterProperty;
 			this._sCenterValue = null;
 			this._aPlacemarks = aPlacemarks;
@@ -100,7 +95,6 @@ sap.ui.define([
 		},
 		createPlacemarks: function () {
 			this._aPlacemarks.forEach((oPlacemark) => {
-				//this._aPlacemarks.push(oPlacemark);
 				let oYandexPlacemark = oPlacemark.createPlacemark();
 				if (oYandexPlacemark) {
 					this._oGeoObjectCollection.add(oYandexPlacemark);
@@ -114,14 +108,15 @@ sap.ui.define([
 		refreshRoutes: function () {
 			this._aRoutes.forEach((oRoute) => oRoute.onRefresh());
 		},
-		createMapControl: function () {
+		createMapControl: function (sMapControlId) {
+			this._sMapControlId = sMapControlId;
 			let that = this;
 			return new Promise(function (resolve, reject) {
 				if (!that._oMap) {
 					let oResourceLoader = new ResourceLoader();
 					oResourceLoader.getScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU")
 						.then(() => ymaps.ready(function () {
-							that._oMap = new ymaps.Map(that._sMapControlId, {
+							that._oMap = new ymaps.Map(that _sMapControlId, {
 								//center: that.convertGeoLocation(that._oModelContext.getProperty(that._sCenterProperty)),
 								center: [55.752515, 37.611786],
 								zoom: 9
