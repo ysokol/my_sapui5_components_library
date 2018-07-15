@@ -44,7 +44,7 @@ sap.ui.define([
 		},
 		bindElement: function(oContext) {
 			this._oModelContext = oContext;
-			this._aBottomDetails.forEach(oDetail => oDetail.bindElement(oContext));
+			//this._aBottomDetails.forEach(oDetail => oDetail.bindElement(oContext));
 		},
 		createPlacemark: function () {
 			let that = this;

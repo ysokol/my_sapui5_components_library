@@ -50,7 +50,7 @@ sap.ui.define([
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sCenterProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-			this._oCenterBinding.attachChange(this.renderMap, this);
+			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);
 
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
 			this.aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
@@ -93,12 +93,12 @@ sap.ui.define([
 			this.cratePlacemarkCollections();
 			this.refreshRoutes();
 		},
-		refreshPacemarks: function() {
+		refreshPacemarks: function () {
 			this._oMap._oGeoObjectCollection.removeAll();
 			this.createPlacemarks();
 		},
 		createPlacemarks: function () {
-			
+
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
 				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
