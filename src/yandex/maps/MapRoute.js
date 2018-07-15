@@ -36,6 +36,9 @@ sap.ui.define([
 			this._sFromValue = undefined;
 			this._sToValue = undefined;
 		},
+		bindElement: function(oContext) {
+			this._oModelContext = oContext;
+		},
 		onRefresh: function () {
 			if (this._oModelContext.getProperty(this._sFromProperty) === this._sFromValue && this._oModelContext.getProperty(this._sToProperty) === this._sToValue ) {
 				return;

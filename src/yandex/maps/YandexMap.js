@@ -47,24 +47,29 @@ sap.ui.define([
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
 			this._oCenterBinding = new sap.ui.model.Binding(
-					this._oModelContext.getModel(),
-					this._oModelContext.getPath() + "/" + this._sCenterProperty,
-					this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-				this._oCenterBinding.attachChange(this.renderMap, this);
-			
+				this._oModelContext.getModel(),
+				this._oModelContext.getPath() + "/" + this._sCenterProperty,
+				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
+			this._oCenterBinding.attachChange(this.renderMap, this);
+
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
+			this.aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.bindElement(oContext));
-							
-			if (this._oModelContext.getProperty(this._sCenterProperty)) {
-				this.renderMap();
-			}
+
+			this.renderMap();
+			// ADD placemark rendering;
 		},
 		renderMap: function () {
-			if (this._oMap) {
+			if (this._oModelContext.getProperty(this._sCenterProperty)) {
+				this.setCenter(this._oModelContext.getProperty(this._sCenterProperty));
+			}
+			this.refreshPacemarks();
+			this.refreshRoutes();
+			/*if (this._oMap) {
 				this.setCenter(this._oModelContext.getProperty(this._sCenterProperty));
 			} else {
 				this.createMapControl().then(this.renderMap);
-			}
+			}*/
 		},
 		createMap: function () {
 			/*if (!this._oModelContext.getProperty(this._sCenterProperty)) {
@@ -75,7 +80,7 @@ sap.ui.define([
 				let that = this;
 				that._oCenterBinding.attachChange((oEvent) => that.createMapDelayed());
 			} else {*/
-				this.createMapDelayed();
+			this.createMapDelayed();
 			//}
 		},
 		createMapDelayed: function () {
@@ -88,7 +93,12 @@ sap.ui.define([
 			this.cratePlacemarkCollections();
 			this.refreshRoutes();
 		},
+		refreshPacemarks: function() {
+			this._oMap._oGeoObjectCollection.removeAll();
+			this.createPlacemarks();
+		},
 		createPlacemarks: function () {
+			
 			this._aPlacemarks.forEach((oPlacemark) => {
 				//this._aPlacemarks.push(oPlacemark);
 				this._oGeoObjectCollection.add(oPlacemark.createPlacemark());
