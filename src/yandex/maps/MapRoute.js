@@ -24,6 +24,13 @@ sap.ui.define([
 			this._sColor = sColor;
 			this._sActiveColor = sActiveColor;
 			this._oMultiRoute = null;
+			
+			this._sFromValue = undefined;
+			this._sToValue = undefined;
+		},
+		bindElement: function(oContext) {
+			this._oModelContext = oContext;
+			
 			let oBindingFrom = new sap.ui.model.Binding(this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sFromProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sFromProperty));
@@ -32,12 +39,6 @@ sap.ui.define([
 				this._oModelContext.getPath() + "/" + this._sToProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sToProperty));
 			oBindingTo.attachChange((oEvent) => this.onRefresh());
-			
-			this._sFromValue = undefined;
-			this._sToValue = undefined;
-		},
-		bindElement: function(oContext) {
-			this._oModelContext = oContext;
 		},
 		onRefresh: function () {
 			if (this._oModelContext.getProperty(this._sFromProperty) === this._sFromValue && this._oModelContext.getProperty(this._sToProperty) === this._sToValue ) {
