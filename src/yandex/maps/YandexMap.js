@@ -13,8 +13,9 @@ sap.ui.define([
 	//
 	// https://tech.yandex.ru/maps/jsbox/2.1/object_manager_spatial
 	return Object.extend("my.sapui5_components_library.yandex.maps.YandexMap", {
-		constructor: function () {
+		constructor: function (sMapControlId) {
 			this._oMap = null;
+			this._sMapControlId = sMapControlId;
 		},
 		init: function ({
 			oParams: {
@@ -108,8 +109,7 @@ sap.ui.define([
 		refreshRoutes: function () {
 			this._aRoutes.forEach((oRoute) => oRoute.onRefresh());
 		},
-		createMapControl: function (sMapControlId) {
-			this._sMapControlId = sMapControlId;
+		createMapControl: function () {
 			let that = this;
 			return new Promise(function (resolve, reject) {
 				if (!that._oMap) {
