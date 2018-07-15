@@ -43,7 +43,7 @@ sap.ui.define([
 			});
 			this._aRoutes = aRoutes;
 			//this.createMap();
-			this.cratePlacemarkCollections();
+			//this.cratePlacemarkCollections();
 		},
 		bindElement: function (oContext) {
 			this._oModelContext = oContext;
