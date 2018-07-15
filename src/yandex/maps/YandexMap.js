@@ -51,21 +51,19 @@ sap.ui.define([
 			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
 			this._aPlacemarkCollections.forEach((oPlacemarkCollection) => oPlacemarkCollection.bindElement(oContext));
 
-			this._oCenterBinding = new sap.ui.model.Binding(
+			/*this._oCenterBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath() + "/" + this._sCenterProperty,
 				this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
-			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);
+			this._oCenterBinding.attachChange((oEvent) => this.setCenter(this._oModelContext.getProperty(this._sCenterProperty)), this);*/
 			
 			this._oMapBinding = new sap.ui.model.Binding(
 				this._oModelContext.getModel(),
 				this._oModelContext.getPath(),
 				this._oModelContext);
 			this._oMapBinding.attachChange(this.renderMap, this);
-
-
+			
 			this.renderMap();
-			// ADD placemark rendering;
 		},
 		renderMap: function (oEvent) {
 			if (this._oModelContext.getProperty(this._sCenterProperty)) {
