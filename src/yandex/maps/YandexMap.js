@@ -64,16 +64,16 @@ sap.ui.define([
 			}
 		},
 		createMap: function () {
-			if (!this._oModelContext.getProperty(this._sCenterProperty)) {
+			/*if (!this._oModelContext.getProperty(this._sCenterProperty)) {
 				this._oCenterBinding = new sap.ui.model.Binding(
 					this._oModelContext.getModel(),
 					this._oModelContext.getPath() + "/" + this._sCenterProperty,
 					this._oModelContext.getModel().getContext(this._oModelContext.getPath() + "/" + this._sCenterProperty));
 				let that = this;
 				that._oCenterBinding.attachChange((oEvent) => that.createMapDelayed());
-			} else {
+			} else {*/
 				this.createMapDelayed();
-			}
+			//}
 		},
 		createMapDelayed: function () {
 			if (!this._oMap) {
