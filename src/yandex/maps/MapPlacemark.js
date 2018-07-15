@@ -44,7 +44,22 @@ sap.ui.define([
 		},
 		bindElement: function(oContext) {
 			this._oModelContext = oContext;
-			//this._aBottomDetails.forEach(oDetail => oDetail.bindElement(oContext));
+			this._aBottomDetails.forEach(oDetail => oDetail.bindElement(oContext));
+			this._aRightDetails.forEach(oDetail => oDetail.bindElement(oContext));
+			this._aHintDetails.forEach(oDetail => oDetail.bindElement(oContext));
+			this._aPlacemarkAction.forEach(oAction => oAction.bindElement(oContext));
+			if (this._oCenterDetails) {
+				this._oCenterDetails.bindElement(oContext);
+			}
+			if (this._oTopLeftDetails) {
+				this._oTopLeftDetails.bindElement(oContext);
+			}
+			if (this._oBottomRightDetails) {
+				this._oBottomRightDetails.bindElement(oContext);
+			}
+			if (this._oTopRightDetails) {
+				this._oTopRightDetails.bindElement(oContext);
+			}
 		},
 		createPlacemark: function () {
 			let that = this;

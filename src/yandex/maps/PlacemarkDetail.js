@@ -24,6 +24,9 @@ sap.ui.define([
 			this._fnIcon = fnIcon;
 			this._fnIsVisible = fnIsVisible;
 		},
+		bindElement: function(oContext) {
+			this._oModelContext = oContext;
+		},
 		getProperty: function(sPath) {
 			return this._oModelContext.getProperty(sPath);
 		},

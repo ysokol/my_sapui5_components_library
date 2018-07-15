@@ -32,6 +32,9 @@ sap.ui.define([
 			}
 			this._sDomId = "PlacemarkAction_" + Math.random().toString(36).substr(2, 9);
 		},
+		bindElement: function(oContext) {
+			this._oModelContext = oContext;
+		},
 		isVisible: function() {
 			return this._fnIsVisible(this._oModelContext);
 		},
