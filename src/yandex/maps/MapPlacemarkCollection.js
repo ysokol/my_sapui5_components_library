@@ -50,7 +50,9 @@ sap.ui.define([
 				let that = this;
 				that._oModelContext.getProperty(that._sItemsPath)
 					.forEach((sItemPath) => {
+						debugger;
 						let oPlacemark = this._fnPlacemarkConstructor(that._oParent, sItemPath);
+						//oPlacemark.bindElement(new sap.ui.model.Context(that._oModelContext.getModel(), "/" + sItemPath));
 						that._aPlacemarks.push(oPlacemark);
 						that._oGeoObjectCollection.add(oPlacemark.createPlacemark());
 					});

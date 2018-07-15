@@ -42,6 +42,9 @@ sap.ui.define([
 			this._aPlacemarkAction = aPlacemarkActions;
 			this._fnIsActive = fnIsActive;
 		},
+		bindElement: function(oContext) {
+			this._oModelContext = oContext;
+		},
 		createPlacemark: function () {
 			let that = this;
 			this._oPlacemark = new ymaps.Placemark(
