@@ -1,13 +1,13 @@
 sap.ui.define([
 	"sap/ui/base/Object"
-], function (Object) {
+], function(Object) {
 	"use strict";
 	/*eslint-env es6*/
 	/*global ymaps*/
 
 	// https://codeburst.io/es6-destructuring-the-complete-guide-7f842d08b98f
 	return Object.extend("my.sapui5_components_library.yandex.maps.MapPlacemark", {
-		constructor: function ({
+		constructor: function({
 			oMapControl = null,
 			oContext = null,
 			oParams: {
@@ -23,7 +23,7 @@ sap.ui.define([
 				oTopRightDetails = null,
 				aHintDetails = [],
 				aPlacemarkActions = [],
-				fnIsActive = (oContext) => true      
+				fnIsActive = (oContext) => true
 			} = {}
 		} = {}) {
 			this._oParent = oMapControl;
@@ -61,7 +61,7 @@ sap.ui.define([
 				this._oTopRightDetails.bindElement(oContext);
 			}
 		},
-		createPlacemark: function () {
+		createPlacemark: function() {
 			if (!this._sGeoLocationConstant && !this.getProperty(this._sGeoLocationProperty)) {
 				return null;
 			}
@@ -84,26 +84,27 @@ sap.ui.define([
 					openBalloonOnClick: false,
 					balloonPanelMaxMapArea: 0
 				});
-			if (this._sSelectedProperty) {
-				this._oPlacemark.events.add("click", function (oEvent) {
-					if (that.getProperty(that._sSelectedProperty)) {
-						that.setProperty(that._sSelectedProperty, false);
-					} else {
-						that.setProperty(that._sSelectedProperty, true);
-					}
+			if (document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1) { // for phone
+				this._oPlacemark.events.add("click", function(oEvent) {
+					that._oPlacemark.balloon.open();
+				});
+			} else { // for browser
+				if (this._sSelectedProperty) {
+					this._oPlacemark.events.add("click", function(oEvent) {
+						if (that.getProperty(that._sSelectedProperty)) {
+							that.setProperty(that._sSelectedProperty, false);
+						} else {
+							that.setProperty(that._sSelectedProperty, true);
+						}
+					});
+				}
+				this._oPlacemark.events.add("contextmenu", function(oEvent) {
+					that._oPlacemark.balloon.open();
 				});
 			}
-			this._oPlacemark.events.add("contextmenu", function (oEvent) {
-				that._oPlacemark.balloon.open();
-				/*if ($('#menu').css('display') === 'block') {
-					$('#menu').remove();
-				} else {
-					that.createContextMenu(oEvent);
-				}*/
-			});
 			return this._oPlacemark;
 		},
-		createIconLayout: function () {
+		createIconLayout: function() {
 			let sAdditionalCssClass = "";
 			if (this._sSelectedProperty && this.getProperty(this._sSelectedProperty)) {
 				sAdditionalCssClass += " map_placemark_container_selected";
@@ -138,19 +139,19 @@ sap.ui.define([
 				'</div>'
 			);
 		},
-		renderDetails: function (aPlacemarkDetails) {
+		renderDetails: function(aPlacemarkDetails) {
 			return aPlacemarkDetails.reduce((sAccumulator, oPlacemarkDetail) => sAccumulator + oPlacemarkDetail.renderHtml(), "");
 		},
-		renderDetailsWithDiv: function (aPlacemarkDetails) {
+		renderDetailsWithDiv: function(aPlacemarkDetails) {
 			return aPlacemarkDetails.reduce((sAccumulator, oPlacemarkDetail) => sAccumulator + "<div>" + oPlacemarkDetail.renderHtml() +
 				"</div>", "");
 		},
-		createHintLayout: function () {
+		createHintLayout: function() {
 			return ymaps.templateLayoutFactory.createClass(
 				"<div class='my-hint'>" +
 				this.renderDetailsWithDiv(this._aHintDetails) +
 				"</div>", {
-					getShape: function () {
+					getShape: function() {
 						var el = this.getElement(),
 							result = null;
 						if (el) {
@@ -167,7 +168,7 @@ sap.ui.define([
 				}
 			);
 		},
-		createContextMenu: function (oEvent) {
+		createContextMenu: function(oEvent) {
 			let sMenuItemsHtml = this._aPlacemarkAction.reduce(
 				(sAccumulator, oAction) => (oAction.isVisible()) ?
 				sAccumulator + "<li>" + oAction.renderHtml() + "</li>" :
@@ -189,24 +190,24 @@ sap.ui.define([
 			});
 
 			this._aPlacemarkAction.forEach(
-				(oAction) => $('#' + oAction.getDomId()).click(function () {
+				(oAction) => $('#' + oAction.getDomId()).click(function() {
 					oAction.fireOnPress();
 					$('#menu').remove();
 				})
 			);
-			$('#MapPlacemarkCloseMenu').click(function () {
+			$('#MapPlacemarkCloseMenu').click(function() {
 				$('#menu').remove();
 			});
 
 			return sMenuContent;
 		},
-		getProperty: function (sPath) {
+		getProperty: function(sPath) {
 			return this._oModelContext.getProperty(sPath);
 		},
-		setProperty: function (sPath, oValue) {
+		setProperty: function(sPath, oValue) {
 			return this._oModelContext.getModel().setProperty(this._oModelContext.getPath() + "/" + sPath, oValue);
 		},
-		createBalloonContentLayout: function () {
+		createBalloonContentLayout: function() {
 			let sMenuItemsHtml = this._aPlacemarkAction.reduce(
 				(sAccumulator, oAction) => (oAction.isVisible()) ?
 				sAccumulator + oAction.renderHtml() :
@@ -221,18 +222,18 @@ sap.ui.define([
 				'<br/>' +
 				sMenuItemsHtml +
 				'</div>', {
-					build: function () {
+					build: function() {
 						oBalloonContentLayout.superclass.build.call(this);
 						/*$('#zBalloonContectSelectId').bind('click', this.onCounterClick);*/
-						
+
 						that._aPlacemarkAction.forEach(
-							(oAction) => $('#' + oAction.getDomId()).bind('click', function () {
+							(oAction) => $('#' + oAction.getDomId()).bind('click', function() {
 								oAction.fireOnPress();
 								that._oPlacemark.balloon.close();
 							})
 						);
 					},
-					clear: function () {
+					clear: function() {
 						that._aPlacemarkAction.forEach(
 							(oAction) => $('#' + oAction.getDomId()).unbind('click'));
 						oBalloonContentLayout.superclass.clear.call(this);
