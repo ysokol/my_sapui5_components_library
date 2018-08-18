@@ -42,7 +42,7 @@ sap.ui.define([
 			//this.cratePlacemarkCollections();
 		},
 		bindElement: function (oContext) {
-			if (oContext.getModel() === this._oModelContext.getModel() && oContext.getPath() === this._oModelContext.getPath()) {
+			if (this._oModelContext && oContext.getModel() === this._oModelContext.getModel() && oContext.getPath() === this._oModelContext.getPath()) {
 				return;
 			}
 			this._oModelContext = oContext;
