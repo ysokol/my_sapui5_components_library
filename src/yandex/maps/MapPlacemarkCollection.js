@@ -49,9 +49,9 @@ sap.ui.define([
 			if (this._aPlacemarks.length === 0 && this._oParent._oMap && this._oModelContext && this._oModelContext.getProperty(this._sItemsPath)) {
 				let that = this;
 				that._oModelContext.getProperty(that._sItemsPath)
-					.forEach((sItemPath) => {
+					.forEach((sItemPath, iIndex) => {
 						let oPlacemark = this._fnPlacemarkConstructor(that._oParent, sItemPath);
-						oPlacemark.bindElement(new sap.ui.model.Context(that._oModelContext.getModel(), "/" + sItemPath));
+						oPlacemark.bindElement(new sap.ui.model.Context(that._oModelContext.getModel(), that._oModelContext.getPath() + "/" + that._sItemsPath + "/" + iIndex));
 						that._aPlacemarks.push(oPlacemark);
 						let oYandexPlacemark = oPlacemark.createPlacemark();
 						if (oYandexPlacemark) {
