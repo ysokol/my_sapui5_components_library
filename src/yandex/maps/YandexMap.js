@@ -42,6 +42,9 @@ sap.ui.define([
 			//this.cratePlacemarkCollections();
 		},
 		bindElement: function (oContext) {
+			if (oContext.getModel() === this._oModelContext.getModel() && oContext.getPath() === this._oModelContext.getPath()) {
+				return;
+			}
 			this._oModelContext = oContext;
 			this._aPlacemarks.forEach((oPlacemark) => oPlacemark.bindElement(oContext));
 			this._aRoutes.forEach((oRoute) => oRoute.bindElement(oContext));
